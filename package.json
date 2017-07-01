@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/iineva/react-native-gpuimage/issues"
   },
+  "peerDependencies": {
+    "react-native": "^0.41.2"
+  },
   "homepage": "https://github.com/iineva/react-native-gpuimage#readme"
 }
