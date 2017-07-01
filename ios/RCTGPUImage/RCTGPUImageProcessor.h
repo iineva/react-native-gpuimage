@@ -1,14 +1,16 @@
+////
+////  RCTGPUImageProcessor.h
+////  RCTGPUImage
+////
+////  Created by LvBingru on 6/16/16.
+////  Copyright © 2016 erica. All rights reserved.
+////
 //
-//  RCTGPUImageProcessor.h
-//  RCTGPUImage
+//#import <Foundation/Foundation.h>
+//#import <React/RCTBridgeModule.h>
 //
-//  Created by LvBingru on 6/16/16.
-//  Copyright © 2016 erica. All rights reserved.
+//@interface RCTGPUImageProcessor : NSObject<RCTBridgeModule>
+//
+//@end
 //
 
-#import <Foundation/Foundation.h>
-#import "RCTBridgeModule.h"
-
-@interface RCTGPUImageProcessor : NSObject<RCTBridgeModule>
-
-@end

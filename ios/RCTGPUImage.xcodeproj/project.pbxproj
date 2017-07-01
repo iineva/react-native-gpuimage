@@ -184,6 +184,8 @@
 		91069FFB1D123A62006A9075 /* GPUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91069F4E1D123A62006A9075 /* GPUImageView.m */; };
 		91B4A3341D196D2A001A182B /* RCTGPUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4A3311D196D2A001A182B /* RCTGPUImageView.m */; };
 		91B4A3351D196D2A001A182B /* RCTGPUImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4A3331D196D2A001A182B /* RCTGPUImageViewManager.m */; };
+		B0F8BF471F079AF4008D5B3C /* RCTGPUCameraViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F8BF461F079AF4008D5B3C /* RCTGPUCameraViewManager.m */; };
+		B0F8BF4A1F079B56008D5B3C /* RCTGPUCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F8BF491F079B56008D5B3C /* RCTGPUCameraView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -558,6 +560,10 @@
 		91B4A3311D196D2A001A182B /* RCTGPUImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTGPUImageView.m; sourceTree = "<group>"; };
 		91B4A3321D196D2A001A182B /* RCTGPUImageViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTGPUImageViewManager.h; sourceTree = "<group>"; };
 		91B4A3331D196D2A001A182B /* RCTGPUImageViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTGPUImageViewManager.m; sourceTree = "<group>"; };
+		B0F8BF451F079AF4008D5B3C /* RCTGPUCameraViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTGPUCameraViewManager.h; sourceTree = "<group>"; };
+		B0F8BF461F079AF4008D5B3C /* RCTGPUCameraViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTGPUCameraViewManager.m; sourceTree = "<group>"; };
+		B0F8BF481F079B56008D5B3C /* RCTGPUCameraView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTGPUCameraView.h; sourceTree = "<group>"; };
+		B0F8BF491F079B56008D5B3C /* RCTGPUCameraView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTGPUCameraView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -597,6 +603,10 @@
 				91B4A3331D196D2A001A182B /* RCTGPUImageViewManager.m */,
 				91069DCE1D12393A006A9075 /* RCTGPUImageProcessor.h */,
 				91069DD01D12393B006A9075 /* RCTGPUImageProcessor.m */,
+				B0F8BF451F079AF4008D5B3C /* RCTGPUCameraViewManager.h */,
+				B0F8BF461F079AF4008D5B3C /* RCTGPUCameraViewManager.m */,
+				B0F8BF481F079B56008D5B3C /* RCTGPUCameraView.h */,
+				B0F8BF491F079B56008D5B3C /* RCTGPUCameraView.m */,
 			);
 			path = RCTGPUImage;
 			sourceTree = "<group>";
@@ -1108,6 +1118,7 @@
 				91069F811D123A62006A9075 /* GPUImageFramebuffer.m in Sources */,
 				91069F521D123A62006A9075 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				91069F901D123A62006A9075 /* GPUImageHistogramEqualizationFilter.m in Sources */,
+				B0F8BF4A1F079B56008D5B3C /* RCTGPUCameraView.m in Sources */,
 				91069F761D123A62006A9075 /* GPUImageDivideBlendFilter.m in Sources */,
 				91069FF91D123A62006A9075 /* GPUImagePicture+TextureSubimage.m in Sources */,
 				91069FAB1D123A62006A9075 /* GPUImageMonochromeFilter.m in Sources */,
@@ -1166,6 +1177,7 @@
 				91069FC21D123A62006A9075 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
 				91069F9F1D123A62006A9075 /* GPUImageLinearBurnBlendFilter.m in Sources */,
 				91069F5D1D123A62006A9075 /* GPUImageCannyEdgeDetectionFilter.m in Sources */,
+				B0F8BF471F079AF4008D5B3C /* RCTGPUCameraViewManager.m in Sources */,
 				91069F8A1D123A62006A9075 /* GPUImageHardLightBlendFilter.m in Sources */,
 				91069FE41D123A62006A9075 /* GPUImageThresholdSketchFilter.m in Sources */,
 				91069FBE1D123A62006A9075 /* GPUImagePoissonBlendFilter.m in Sources */,

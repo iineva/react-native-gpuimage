@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lvbingru/react-native-gpuimage.git"
+    "url": "git+https://github.com/iineva/react-native-gpuimage.git"
   },
   "keywords": [
     "react-native",
@@ -21,10 +21,10 @@
       "./ios/Resources"
     ]
   },
-  "author": "lvbingru",
-  "license": "ISC",
+  "author": "Steven",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lvbingru/react-native-gpuimage/issues"
+    "url": "https://github.com/iineva/react-native-gpuimage/issues"
   },
-  "homepage": "https://github.com/lvbingru/react-native-gpuimage#readme"
+  "homepage": "https://github.com/iineva/react-native-gpuimage#readme"
 }

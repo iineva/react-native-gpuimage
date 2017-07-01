@@ -1,14 +1,15 @@
+////
+////  RCTGPUImageViewManager.h
+////  RCTGPUImage
+////
+////  Created by LvBingru on 6/21/16.
+////  Copyright © 2016 erica. All rights reserved.
+////
 //
-//  RCTGPUImageViewManager.h
-//  RCTGPUImage
+//#import <Foundation/Foundation.h>
+//#import <React/RCTViewManager.h>
 //
-//  Created by LvBingru on 6/21/16.
-//  Copyright © 2016 erica. All rights reserved.
+//@interface RCTGPUImageViewManager : RCTViewManager
 //
+//@end
 
-#import <Foundation/Foundation.h>
-#import "RCTViewManager.h"
-
-@interface RCTGPUImageViewManager : RCTViewManager
-
-@end
