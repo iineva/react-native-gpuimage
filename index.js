@@ -1,6 +1,6 @@
 import React from 'react'
 import {View} from 'react-native'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { requireNativeComponent } from 'react-native'
 
 const RCTGPUCameraView = requireNativeComponent('RCTGPUCameraView')
@@ -11,14 +11,14 @@ export class GPUCameraView extends React.Component {
     style: View.propTypes.style,
     mirror: PropTypes.bool,
     capture: PropTypes.bool,
-    cameraPosition: PropTypes.oneOf(['front', 'back']),
-    filters: PropTypes.oneOfTypes([
+    cameraPosition: PropTypes.oneOf(['front', 'back']).isRequired,
+    filters: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.shape({
         name: PropTypes.string,
         param: PropTypes.object,
-      })
-    ])
+      }),
+    ])),
   }
 
   static defaultProps = {
