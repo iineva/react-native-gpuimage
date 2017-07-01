@@ -11,13 +11,16 @@
 
 @interface RCTGPUCameraView : GPUImageView
 
-// 是否开启相机
+// capture
 @property (nonatomic, assign) BOOL capture;
 
-// 是否镜像预览
+// mirror
 @property (nonatomic, assign) BOOL mirror;
 
-// 摄像头位置 back|front
+// camera position: back|front
 @property (nonatomic, strong) NSString * cameraPosition;
+
+// filters
+@property (nonatomic, strong) NSArray * filters;
 
 @end

@@ -28,15 +28,6 @@
 - (GPUImageFilterGroup *)filterGroup {
     if (!_filterGroup) {
         _filterGroup = [[GPUImageFilterGroup alloc] init];
-        
-        GPUImageRGBFilter *filter1         = [[GPUImageRGBFilter alloc] init];
-        GPUImageToonFilter *filter2        = [[GPUImageToonFilter alloc] init];
-        GPUImageColorInvertFilter *filter3 = [[GPUImageColorInvertFilter alloc] init];
-        GPUImageSepiaFilter       *filter4 = [[GPUImageSepiaFilter alloc] init];
-        [self addGPUImageFilter:filter1];
-        [self addGPUImageFilter:filter2];
-        [self addGPUImageFilter:filter3];
-        [self addGPUImageFilter:filter4];
     }
     return  _filterGroup;
 }
@@ -79,26 +70,90 @@
     }
 }
 
-- (void)addGPUImageFilter:(GPUImageOutput<GPUImageInput> *)filter {
-    [_filterGroup addFilter:filter];
-    
-    GPUImageOutput<GPUImageInput> *newTerminalFilter = filter;
-    
-    NSInteger count = _filterGroup.filterCount;
-    
-    if (count == 1) {
-        _filterGroup.initialFilters = @[newTerminalFilter];
-        _filterGroup.terminalFilter = newTerminalFilter;
-        
+- (void)setFilters:(NSArray *)filters {
+    _filters = filters;
+    [self reloadFilterGroups];
+}
+
+- (void)reloadFilterGroups {
+    BOOL needUpdate = NO;
+    NSInteger count = _filters.count;
+    if (count != [_filterGroup filterCount]) {
+        needUpdate = YES;
     } else {
-        GPUImageOutput<GPUImageInput> *terminalFilter    = _filterGroup.terminalFilter;
-        NSArray *initialFilters                          = _filterGroup.initialFilters;
-        
-        [terminalFilter addTarget:newTerminalFilter];
-        
-        _filterGroup.initialFilters = @[initialFilters[0]];
-        _filterGroup.terminalFilter = newTerminalFilter;
+        for (int i = 0; i< count; i++) {
+            NSDictionary *filterDic = _filters[i];
+            NSString *name = filterDic[@"name"];
+            
+            GPUImageOutput<GPUImageInput> * filter = [_filterGroup filterAtIndex:i];
+            if (![name isEqualToString:NSStringFromClass(filter.class)]) {
+                needUpdate = YES;
+                break;
+            }
+        }
     }
+    
+    // update filters
+    if (needUpdate) {
+        [_filterGroup removeAllTargets];
+        _filterGroup = [[GPUImageFilterGroup alloc] init];
+        
+        NSMutableArray *filterList = [NSMutableArray new];
+        for (NSDictionary * f in _filters) {
+            NSDictionary * filter = f;
+            if ([filter isKindOfClass:NSString.class]) {
+                filter = @{@"name": f};
+            }
+            NSString *name = filter[@"name"];
+            if (name) {
+                Class filterClass = NSClassFromString(name);
+                GPUImageFilter *imageFilter = [filterClass new];
+                if ([imageFilter isKindOfClass:[GPUImageFilter class]]) {
+                    [filterList.lastObject addTarget:imageFilter];
+                    [_filterGroup addFilter:imageFilter];
+                    [filterList addObject:imageFilter];
+                }
+            }
+        }
+        if (filterList.firstObject) {
+            [_filterGroup setInitialFilters:@[filterList.firstObject]];
+        }
+        if (filterList.lastObject) {
+            [_filterGroup setTerminalFilter:filterList.lastObject];
+        }
+        
+        [_videoCamera addTarget:_filterGroup];
+        [_filterGroup addTarget:self];
+    }
+    
+    // update filter params
+    for (int i = 0; i< count; i++) {
+        NSDictionary *filterDic = _filters[i];
+        if ([filterDic isKindOfClass:NSString.class]) {
+            filterDic = @{@"name": filterDic};
+        }
+        NSDictionary *params = filterDic[@"params"];
+        if (params) {
+            GPUImageOutput<GPUImageInput> * filter = [_filterGroup filterAtIndex:i];
+            if ([filter isKindOfClass:[GPUImageTransformFilter class]]) {
+                CATransform3D transform = CATransform3DIdentity;
+                CGFloat *p = (CGFloat *)&transform;
+                NSArray *modelViewMatrix = params[@"transform3D"];
+                for (int i = 0; i < 16; ++i) {
+                    *p = [[modelViewMatrix objectAtIndex:i] floatValue];
+                    ++p;
+                }
+                [(GPUImageTransformFilter *)filter setTransform3D:transform];
+            } else {
+                for (NSString *key in params.allKeys) {
+                    if ([filter respondsToSelector:NSSelectorFromString(key)]) {
+                        [filter setValue:params[key] forKeyPath:key];
+                    }
+                }
+            }
+        }
+    }
+    
 }
 
 @end
