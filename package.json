@@ -16,6 +16,11 @@
     "android",
     "gpuimage"
   ],
+  "rnpm": {
+    "assets": [
+      "./ios/Resources"
+    ]
+  },
   "author": "lvbingru",
   "license": "ISC",
   "bugs": {
