@@ -71,7 +71,15 @@
 }
 
 - (void)setFilters:(NSArray *)filters {
-    _filters = filters;
+    NSMutableArray * newFilters = [NSMutableArray array];
+    for (id f in filters) {
+        NSDictionary * dic = f;
+        if ([f isKindOfClass:NSString.class]) {
+            dic = @{@"name": f};
+        }
+        [newFilters addObject:dic];
+    }
+    _filters = newFilters;
     [self reloadFilterGroups];
 }
 
@@ -84,7 +92,7 @@
         for (int i = 0; i< count; i++) {
             NSDictionary *filterDic = _filters[i];
             NSString *name = filterDic[@"name"];
-            
+
             GPUImageOutput<GPUImageInput> * filter = [_filterGroup filterAtIndex:i];
             if (![name isEqualToString:NSStringFromClass(filter.class)]) {
                 needUpdate = YES;
@@ -92,18 +100,15 @@
             }
         }
     }
-    
+
     // update filters
     if (needUpdate) {
         [_filterGroup removeAllTargets];
         _filterGroup = [[GPUImageFilterGroup alloc] init];
-        
+
         NSMutableArray *filterList = [NSMutableArray new];
         for (NSDictionary * f in _filters) {
             NSDictionary * filter = f;
-            if ([filter isKindOfClass:NSString.class]) {
-                filter = @{@"name": f};
-            }
             NSString *name = filter[@"name"];
             if (name) {
                 Class filterClass = NSClassFromString(name);
@@ -121,17 +126,14 @@
         if (filterList.lastObject) {
             [_filterGroup setTerminalFilter:filterList.lastObject];
         }
-        
+
         [_videoCamera addTarget:_filterGroup];
         [_filterGroup addTarget:self];
     }
-    
+
     // update filter params
     for (int i = 0; i< count; i++) {
         NSDictionary *filterDic = _filters[i];
-        if ([filterDic isKindOfClass:NSString.class]) {
-            filterDic = @{@"name": filterDic};
-        }
         NSDictionary *params = filterDic[@"params"];
         if (params) {
             GPUImageOutput<GPUImageInput> * filter = [_filterGroup filterAtIndex:i];
@@ -153,7 +155,7 @@
             }
         }
     }
-    
+
 }
 
 @end
