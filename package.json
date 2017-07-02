@@ -18,7 +18,7 @@
   ],
   "rnpm": {
     "assets": [
-      "./ios/Resources"
+      "ios/Resources"
     ]
   },
   "author": "Steven",

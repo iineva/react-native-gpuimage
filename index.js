@@ -26,7 +26,9 @@ export class GPUCameraView extends React.Component {
   }
 
   render = ()=>(
-    <RCTGPUCameraView {...this.props}/>
+    <RCTGPUCameraView {...this.props} filters={this.props.filters.map(row=>(
+      typeof(row)==='string' ? {[row.indexOf('\n')===0?'shader':'name']: row} : row)
+    )} />
   )
 }
 
